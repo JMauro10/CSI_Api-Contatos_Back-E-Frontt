@@ -14,11 +14,6 @@ public class ContatoController {
     @Autowired
     private ContatoService contatoService;
 
-    @PostMapping
-    public Contato incluirContato(@RequestBody Contato contato){
-        return contatoService.incluirContato(contato);
-    }
-
     @GetMapping
     public List<Contato> listarContato() {
         return contatoService.listarContato();
@@ -29,9 +24,23 @@ public class ContatoController {
         return contatoService.listarByIdContato(id);
     }
 
+    @PostMapping
+    public Contato incluirContato(@RequestBody Contato contato){
+        return contatoService.incluirContato(contato);
+    }
+
+    @GetMapping("/grupo/{grupoId}")
+    public List<Contato> listarContatosPorGrupo(@PathVariable int idGrupo) {
+        return contatoService.listarContatosByGrupo(idGrupo);
+    }
+
+    @PutMapping
+    public Contato alterarContato(@RequestBody Contato contato) {
+        return contatoService.alterarContato(contato);
+    }
+
     @DeleteMapping("/{id}")
     public void deletarContatoById(@PathVariable int id){
         contatoService.deletarByIdContato(id);
     }
-
 }

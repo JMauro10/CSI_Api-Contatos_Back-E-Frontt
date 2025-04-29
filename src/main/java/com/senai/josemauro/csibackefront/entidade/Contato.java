@@ -1,6 +1,11 @@
 package com.senai.josemauro.csibackefront.entidade;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "contato")
 public class Contato {
@@ -15,18 +20,30 @@ public class Contato {
     @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "telefone", length = 100)
+    @Column(name = "telefone", length = 13)
     private String telefone;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "contato_grupo",
+            joinColumns = @JoinColumn(name = "contato_id"),
+            inverseJoinColumns = @JoinColumn(name = "grupo_id")
+    )
+    private List<Grupo> grupos;
+
 
     public Contato() {
     }
 
-    public Contato(int id, String nome, String email, String telefone) {
+    public Contato(int id, String nome, String email, String telefone, List<Grupo> grupos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.grupos = new ArrayList<>(grupos);
     }
+
 
     public int getId() {
         return id;
@@ -58,5 +75,13 @@ public class Contato {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
     }
 }
