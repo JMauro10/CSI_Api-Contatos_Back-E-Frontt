@@ -592,3 +592,9 @@ insert into contato (email,nome,telefone,id) values (?,?,?,?) [22001-232]
 2025-04-29 16:36:31.763758-03:00 jdbc[53]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "TELEFONE CHARACTER VARYING(13)": "'(62) 99939-0085' (15)"; SQL statement:
 insert into contato (email,nome,telefone,id) values (?,?,?,?) [22001-232]
+2025-05-01 11:48:46.437313-03:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete from contato[*], contato_grupo, grupo"; SQL statement:
+delete from contato, contato_grupo, grupo [42000-232]
+2025-05-01 11:48:55.140993-03:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete from contato[*], contato_grupo, grupo"; SQL statement:
+delete from contato, contato_grupo, grupo [42000-232]

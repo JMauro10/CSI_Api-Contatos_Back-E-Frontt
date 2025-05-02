@@ -31,13 +31,13 @@ public class GrupoController {
         return grupoService.listarGrupoById(id);
     }
 
-    @PutMapping
+    @PutMapping()
     public Grupo editarGrupo(@RequestBody Grupo grupo) {
         return grupoService.editarGrupo(grupo);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarGrupoById(@PathVariable int id){
+    public void deletarGrupo(@PathVariable int id){
         grupoService.deletarGrupoById(id);
     }
 }

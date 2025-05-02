@@ -23,6 +23,8 @@ public class Contato {
     @Column(name = "telefone", length = 13)
     private String telefone;
 
+    private Boolean favorito;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -83,5 +85,13 @@ public class Contato {
 
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
+    }
+
+    public Boolean getFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(Boolean favorito) {
+        this.favorito = favorito;
     }
 }

@@ -7,4 +7,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Integer> {
 
+    boolean existsByNome(String nome);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByNomeAndIdNot(String nome, int id);
+
+    boolean existsByEmailAndIdNot(String email, int id);
 }

@@ -7,7 +7,9 @@ import com.senai.josemauro.csibackefront.repository.ContatoRepository;
 import com.senai.josemauro.csibackefront.repository.GrupoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,12 +29,15 @@ public class GrupoService {
     }
 
     public Grupo incluirGrupo(Grupo grupo) {
+        if(grupoRepository.existsByNome(grupo.getNome())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Já exite um grupo com esse nome: " + grupo.getNome());
+        }
         return grupoRepository.save(grupo);
     }
 
     public Grupo editarGrupo(Grupo grupo) {
-        if (!grupoRepository.existsById(grupo.getId())) {
-            throw new RuntimeException("Grupo " + grupo.getId() + " não encontrado!");
+        if(grupoRepository.existsByNome(grupo.getNome())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Já exite um grupo com esse nome: " + grupo.getNome());
         }
         return grupoRepository.save(grupo);
     }
