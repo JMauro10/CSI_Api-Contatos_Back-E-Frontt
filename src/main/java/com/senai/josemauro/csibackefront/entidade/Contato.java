@@ -1,4 +1,5 @@
 package com.senai.josemauro.csibackefront.entidade;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class Contato {
 
     private Boolean favorito;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "contato_grupo",
@@ -34,16 +34,21 @@ public class Contato {
     )
     private List<Grupo> grupos;
 
+    @OneToMany(mappedBy = "contato", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Compromisso> compromissos;
+
 
     public Contato() {
     }
 
-    public Contato(int id, String nome, String email, String telefone, List<Grupo> grupos) {
+    public Contato(int id, String nome, String email, String telefone, List<Grupo> grupos, List<Compromisso> compromissos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.grupos = new ArrayList<>(grupos);
+        this.compromissos = new ArrayList<>(compromissos);
     }
 
 
@@ -93,5 +98,13 @@ public class Contato {
 
     public void setFavorito(Boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public List<Compromisso> getCompromissos() {
+        return compromissos;
+    }
+
+    public void setCompromissos(List<Compromisso> compromissos) {
+        this.compromissos = compromissos;
     }
 }

@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.senai.josemauro</groupId>
-    <artifactId>csi-backEfront</artifactId>
+    <artifactId>CSI_Api-ListaDeContatos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>csi-backEfront</name>
     <description>csi-backEfront</description>

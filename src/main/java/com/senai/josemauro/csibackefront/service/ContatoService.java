@@ -37,7 +37,7 @@ public class ContatoService {
     public Contato incluirContato(Contato contato) {
         if ((contato.getEmail() == null || contato.getEmail().isBlank()) &&
                 (contato.getTelefone() == null || contato.getTelefone().isBlank())) {
-            throw new IllegalArgumentException("É necessário um e-mail ou telefone");
+            throw new IllegalArgumentException("É necessário um e-mail e ou telefone");
         }
         if(contato.getGrupos() != null){
             List<Grupo> grupos = grupoRepository.findAllById(contato.getGrupos().stream().map(Grupo::getId).toList());
